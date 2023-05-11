@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const inProgressIssuesSlice = createSlice({
-  name: 'inProgressIssues',
-  initialState: {value: []},
+  name: "inProgressIssues",
+  initialState: { value: [] },
   reducers: {
     getInProgressIssues(state, action) {
       state.value = action.payload;
@@ -13,4 +13,5 @@ export const inProgressIssuesSlice = createSlice({
   },
 });
 
-export const { getInProgressIssues, nextPageInProgressIssues } = inProgressIssuesSlice.actions;
+export const { getInProgressIssues, nextPageInProgressIssues } =
+  inProgressIssuesSlice.actions;

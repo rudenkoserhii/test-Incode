@@ -1,1 +1,1 @@
-export const inProgressIssuesValue = state => state.inProgressIssues.value;
+export const inProgressIssuesValue = (state) => state.inProgressIssues.value;

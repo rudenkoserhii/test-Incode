@@ -7,7 +7,7 @@ export const Title = () => {
 
   return (
     url && (
-      <h1 style={{ margin: '0px', fontSize: '26px', color: 'blue' }} >
+      <h1 style={{ margin: "0px", fontSize: "26px", color: "blue" }}>
         <a
           href={url
             .split("/")

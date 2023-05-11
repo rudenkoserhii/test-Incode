@@ -1,1 +1,1 @@
-export const doneIssuesValue = state => state.doneIssues.value;
+export const doneIssuesValue = (state) => state.doneIssues.value;

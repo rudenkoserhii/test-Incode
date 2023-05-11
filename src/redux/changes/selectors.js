@@ -1,1 +1,1 @@
-export const changesValue = state => state.changes.value;
+export const changesValue = (state) => state.changes.value;

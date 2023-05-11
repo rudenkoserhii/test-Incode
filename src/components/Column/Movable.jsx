@@ -17,7 +17,7 @@ import { COLUMN_NAMES } from "../../constants/constants";
 import { addChange } from "../../redux/changes/slice";
 import { repoValue } from "../../redux/repo/selectors";
 
-export const Movable = ({ issue, index, title }) => {
+export const Movable = ({ issue, title }) => {
   const dispatch = useDispatch();
 
   const url = useSelector(repoValue);
@@ -42,6 +42,7 @@ export const Movable = ({ issue, index, title }) => {
   const [, drop] = useDrop({
     accept: ItemTypes.BOX,
     drop: () => ({ name: title }),
+
   });
 
   const [{ isDragging }, drag] = useDrag({
@@ -49,12 +50,12 @@ export const Movable = ({ issue, index, title }) => {
     type: ItemTypes.BOX,
     end: (item, monitor) => {
       const dropResult = monitor.getDropResult();
-      console.log(issue.id);
-      console.log(index);
-      console.log(title);
-      console.log(dropResult);
 
-      if (dropResult && Object.values(COLUMN_NAMES).includes(dropResult.name) && dropResult.name !== title) {
+      if (
+        dropResult &&
+        Object.values(COLUMN_NAMES).includes(dropResult.name) &&
+        dropResult.name !== title
+      ) {
         switch (title) {
           case "ToDo":
             dispatch(
@@ -90,23 +91,14 @@ export const Movable = ({ issue, index, title }) => {
         switch (dropResult.name) {
           case "ToDo":
             dispatch(getToDoIssues([...toDoIssues, issue]));
-            // dispatch(
-            //   addChange(objChange(dropResult.name, title, issue.id, issue))
-            // );
             break;
 
           case "In Progress":
             dispatch(getInProgressIssues([...inProgressIssues, issue]));
-            // dispatch(
-            //   addChange(objChange(dropResult.name, title, issue.id, issue))
-            // );
             break;
 
           case "Done":
             dispatch(getDoneIssues([...doneIssues, issue]));
-            // dispatch(
-            //   addChange(objChange(dropResult.name, title, issue.id, issue))
-            // );
             break;
         }
       }
@@ -121,11 +113,18 @@ export const Movable = ({ issue, index, title }) => {
   drag(drop(ref));
 
   return (
-    <ListGroup.Item 
-      as="li" action
+    <ListGroup.Item
+      as="li"
+      action
       ref={ref}
       className="movable-item"
-      style={{ opacity, padding: '20px 20px 0px 20px', background: 'transparent', border: 'none', cursor: 'pointer'}}
+      style={{
+        opacity,
+        padding: "20px 20px 0px 20px",
+        background: "transparent",
+        border: "none",
+        cursor: "pointer",
+      }}
     >
       <Issue issue={issue} />
     </ListGroup.Item>
@@ -134,6 +133,5 @@ export const Movable = ({ issue, index, title }) => {
 
 Movable.propTypes = {
   issue: PropTypes.object,
-  index: PropTypes.number,
   title: PropTypes.string,
 };

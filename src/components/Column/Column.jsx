@@ -11,15 +11,8 @@ import { ItemTypes } from "../ItemTypes";
 import { COLUMN_NAMES } from "../../constants/constants";
 import { Spinner } from "react-bootstrap";
 
-export const Column = ({
-  column,
-  title,
-  setPage,
-  removeButton,
-  page,
-  isLoading,
-}) => {
-  console.log(column);
+export const Column = ({ column, title, setPage, removeButton, isLoading }) => {
+
   const [, drop] = useDrop({
     accept: ItemTypes.BOX,
     drop: () => ({ name: title }),
@@ -44,10 +37,9 @@ export const Column = ({
   return (
     <Col
       style={{
-        width: "calc((100% / 3)"
+        width: "calc((100% / 3)",
       }}
     >
-
       <Card bg="secondary" style={{ height: "100%" }}>
         <Card.Title
           style={{
@@ -63,8 +55,7 @@ export const Column = ({
           {column.map((issue, index) => (
             <Movable issue={issue} index={index} title={title} key={nanoid()} />
           ))}
-          {((!removeButton && column.length !== 0) ||
-            (page !== 1 && column.length % 30 === 0)) && (
+          {!removeButton && column.length !== 0 && (
             <Button
               onClick={() => setPage(title)}
               style={{
@@ -80,15 +71,14 @@ export const Column = ({
             </Button>
           )}
         </ListGroup>
-
       </Card>
       {isLoading && (
         <Spinner
           animation="border"
           role="status"
           style={{
-            margin: '0px auto 0px auto',
-display: 'block'
+            margin: "0px auto 0px auto",
+            display: "block",
           }}
         ></Spinner>
       )}
@@ -101,6 +91,5 @@ Column.propTypes = {
   title: PropTypes.string.isRequired,
   setPage: PropTypes.func,
   removeButton: PropTypes.bool,
-  page: PropTypes.number,
   isLoading: PropTypes.bool,
 };

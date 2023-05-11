@@ -1,1 +1,1 @@
-export const repoValue = state => state.repo.value;
+export const repoValue = (state) => state.repo.value;

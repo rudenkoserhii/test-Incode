@@ -1,8 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const doneIssuesSlice = createSlice({
-  name: 'doneIssues',
-  initialState: {value: []},
+  name: "doneIssues",
+  initialState: { value: [] },
   reducers: {
     getDoneIssues(state, action) {
       state.value = action.payload;

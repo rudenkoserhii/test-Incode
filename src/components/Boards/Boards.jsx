@@ -233,7 +233,6 @@ export const Boards = () => {
         <DndProvider backend={HTML5Backend}>
           <Column
             style={{ height: "100%" }}
-            page={pageToDo}
             title={TO_DO}
             removeButton={removeButtonToDo}
             column={toDoIssues}
@@ -242,7 +241,6 @@ export const Boards = () => {
           />
           <Column
             style={{ height: "100%" }}
-            page={pageInProgress}
             title={IN_PROGRESS}
             removeButton={removeButtonInProgress}
             column={inProgressIssues}
@@ -251,7 +249,6 @@ export const Boards = () => {
           />
           <Column
             style={{ height: "100%" }}
-            page={pageDone}
             title={DONE}
             removeButton={removeButtonDone}
             column={doneIssues}
