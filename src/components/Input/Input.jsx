@@ -1,7 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-// import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { getRepo } from "../../redux/repo/slice";
 
@@ -11,19 +10,20 @@ export const Input = () => {
   function onSubmit(e) {
     e.preventDefault();
     dispatch(getRepo(e.target[0].value));
-    // searchUrl(e.target[0].value);
     e.target.reset();
   }
 
   return (
     <header>
-      <Form className="d-flex" onSubmit={onSubmit}>
+      <Form className="d-flex" onSubmit={onSubmit} role='form'>
         <Form.Control
+          role="input"
           type="text"
           placeholder="Enter repo url"
           pattern='^(ftp|http|https):\/\/[^ "]+$'
         />
         <Button
+          data-testid="button"
           variant="primary"
           type="submit"
           style={{
@@ -39,7 +39,3 @@ export const Input = () => {
     </header>
   );
 };
-
-// Input.propTypes = {
-//   searchUrl: PropTypes.function,
-// };

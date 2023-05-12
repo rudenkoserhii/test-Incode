@@ -57,7 +57,9 @@ export const Movable = ({ issue, title }) => {
         switch (title) {
           case "ToDo":
             dispatch(
-              getToDoIssues(toDoIssues.filter((element) => element.id !== issue.id))
+              getToDoIssues(
+                toDoIssues.filter((element) => element.id !== issue.id)
+              )
             );
             dispatch(
               addChange(objChange(dropResult.name, title, issue.id, issue))
@@ -77,7 +79,9 @@ export const Movable = ({ issue, title }) => {
 
           case "Done":
             dispatch(
-              getDoneIssues(doneIssues.filter((element) => element.id !== issue.id))
+              getDoneIssues(
+                doneIssues.filter((element) => element.id !== issue.id)
+              )
             );
             dispatch(
               addChange(objChange(dropResult.name, title, issue.id, issue))

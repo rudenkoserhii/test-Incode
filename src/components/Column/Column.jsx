@@ -10,9 +10,8 @@ import { useDrop } from "react-dnd";
 import { Spinner } from "react-bootstrap";
 
 export const Column = ({ column, title, setPage, removeButton, isLoading }) => {
-
   const [, drop] = useDrop({
-    accept: 'Movable',
+    accept: "Movable",
     drop: () => ({ name: title }),
   });
 
@@ -30,12 +29,14 @@ export const Column = ({ column, title, setPage, removeButton, isLoading }) => {
             textAlign: "center",
             paddingTop: "20px",
           }}
+          role='title'
         >
           {title}
         </Card.Title>
         <ListGroup as="ul" ref={drop} style={{ height: "100%" }}>
           {column.map((issue, index) => (
-            <Movable issue={issue} index={index} title={title} key={nanoid()} />
+            <Movable issue={issue} index={index} title={title} key={nanoid()}       role="issue"
+/>
           ))}
           {!removeButton && column.length !== 0 && (
             <Button
