@@ -4,7 +4,6 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { Issue } from "../Issue/Issue";
 
 import { useDrag, useDrop } from "react-dnd";
-import { ItemTypes } from "../ItemTypes";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getToDoIssues } from "../../redux/toDoIssues/slice";
@@ -40,16 +39,15 @@ export const Movable = ({ issue, title }) => {
   const ref = useRef(null);
 
   const [, drop] = useDrop({
-    accept: ItemTypes.BOX,
+    accept: "Movable",
     drop: () => ({ name: title }),
-
   });
 
   const [{ isDragging }, drag] = useDrag({
     item: { name: title },
-    type: ItemTypes.BOX,
+    type: "Movable",
     end: (item, monitor) => {
-      const dropResult = monitor.getDropResult();
+      const dropResult = monitor.getDropResult(item);
 
       if (
         dropResult &&
@@ -59,7 +57,7 @@ export const Movable = ({ issue, title }) => {
         switch (title) {
           case "ToDo":
             dispatch(
-              getToDoIssues(toDoIssues.filter((item) => item.id !== issue.id))
+              getToDoIssues(toDoIssues.filter((element) => element.id !== issue.id))
             );
             dispatch(
               addChange(objChange(dropResult.name, title, issue.id, issue))
@@ -69,7 +67,7 @@ export const Movable = ({ issue, title }) => {
           case "In Progress":
             dispatch(
               getInProgressIssues(
-                inProgressIssues.filter((item) => item.id !== issue.id)
+                inProgressIssues.filter((element) => element.id !== issue.id)
               )
             );
             dispatch(
@@ -79,7 +77,7 @@ export const Movable = ({ issue, title }) => {
 
           case "Done":
             dispatch(
-              getDoneIssues(doneIssues.filter((item) => item.id !== issue.id))
+              getDoneIssues(doneIssues.filter((element) => element.id !== issue.id))
             );
             dispatch(
               addChange(objChange(dropResult.name, title, issue.id, issue))
@@ -123,7 +121,6 @@ export const Movable = ({ issue, title }) => {
         padding: "20px 20px 0px 20px",
         background: "transparent",
         border: "none",
-        cursor: "pointer",
       }}
     >
       <Issue issue={issue} />

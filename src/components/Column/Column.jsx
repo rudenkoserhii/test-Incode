@@ -7,31 +7,13 @@ import Button from "react-bootstrap/Button";
 import { nanoid } from "nanoid";
 import { Movable } from "./Movable";
 import { useDrop } from "react-dnd";
-import { ItemTypes } from "../ItemTypes";
-import { COLUMN_NAMES } from "../../constants/constants";
 import { Spinner } from "react-bootstrap";
 
 export const Column = ({ column, title, setPage, removeButton, isLoading }) => {
 
   const [, drop] = useDrop({
-    accept: ItemTypes.BOX,
+    accept: 'Movable',
     drop: () => ({ name: title }),
-    collect: (monitor) => ({
-      isOver: monitor.isOver(),
-      canDrop: monitor.canDrop(),
-    }),
-
-    canDrop: (item) => {
-      const { TO_DO, IN_PROGRESS, DONE } = COLUMN_NAMES;
-      const { currentColumnName } = item;
-      return (
-        currentColumnName === title ||
-        (currentColumnName === TO_DO && title === IN_PROGRESS) ||
-        (currentColumnName === IN_PROGRESS &&
-          (title === TO_DO || title === DONE)) ||
-        (currentColumnName === DONE && title === IN_PROGRESS)
-      );
-    },
   });
 
   return (
