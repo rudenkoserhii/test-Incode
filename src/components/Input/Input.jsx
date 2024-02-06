@@ -15,11 +15,11 @@ export const Input = () => {
 
   return (
     <header>
-      <Form className="d-flex" onSubmit={onSubmit} role='form'>
+      <Form className="d-flex" onSubmit={onSubmit} role="form">
         <Form.Control
           role="input"
           type="text"
-          placeholder="Enter repo url"
+          placeholder="Enter repo url. For example https://github.com/facebook/react"
           pattern='^(ftp|http|https):\/\/[^ "]+$'
         />
         <Button
